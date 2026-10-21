@@ -1,0 +1,1898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PixelByte | Computer Systems & Components</title>
+
+<style>
+
+/* =========================================================
+   PIXELBYTE
+   COMPUTER SYSTEMS & COMPONENTS LEARNING WEBSITE
+   ONE HTML FILE • HTML + CSS ONLY
+   ========================================================= */
+
+/* ---------- GENERAL ---------- */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Courier New", monospace;
+    color: #54285f;
+    background:
+        radial-gradient(circle at 15% 20%, #ffffff 0 2px, transparent 3px),
+        radial-gradient(circle at 80% 15%, #ffffff 0 2px, transparent 3px),
+        radial-gradient(circle at 65% 70%, #ffffff 0 2px, transparent 3px),
+        radial-gradient(circle at 25% 80%, #f8b9e5 0 2px, transparent 3px),
+        linear-gradient(135deg, #ead5ff, #d9c6ff 35%, #f7c9e8 70%, #e4c8ff);
+
+    background-size: 180px 180px, 230px 230px, 210px 210px,
+                     250px 250px, 100% 100%;
+
+    min-height: 100vh;
+}
+
+/* Pixel-like image effect */
+
+.pixel {
+    image-rendering: pixelated;
+}
+
+/* ---------- NAVIGATION ---------- */
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+
+    background: rgba(255, 228, 249, 0.96);
+    border-bottom: 4px solid #a94fc8;
+
+    padding: 13px 6%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    box-shadow: 0 5px 0 rgba(108, 45, 134, 0.25);
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #8c35bd;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px #f29ad5;
+}
+
+.logo span {
+    color: #ec62ba;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #713d82;
+
+    font-size: 11px;
+    font-weight: bold;
+
+    padding: 8px 12px;
+
+    background: #f9e5f7;
+    border: 2px solid #b86ad0;
+
+    box-shadow: 3px 3px 0 #d990c8;
+
+    transition: 0.15s;
+}
+
+nav a:hover {
+    color: white;
+    background: #a944bd;
+    border-color: #7e299b;
+    box-shadow: 2px 2px 0 #ef79c5;
+}
+
+/* ---------- HERO ---------- */
+
+.hero {
+    min-height: 650px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 80px 20px;
+
+    position: relative;
+    overflow: hidden;
+}
+
+/* Decorative pixel objects */
+
+.hero::before {
+    content: "✦  ♡  ✧  ♡  ✦";
+    position: absolute;
+    top: 55px;
+    left: 8%;
+
+    color: #ffffff;
+    font-size: 25px;
+    letter-spacing: 18px;
+
+    text-shadow:
+        2px 2px #d778c5,
+        4px 4px rgba(140, 53, 189, 0.2);
+}
+
+.hero::after {
+    content: "♡  ✦  ☆  ✧";
+    position: absolute;
+    right: 7%;
+    bottom: 60px;
+
+    color: #ffffff;
+    font-size: 30px;
+    letter-spacing: 15px;
+
+    text-shadow: 2px 2px #bd65d2;
+}
+
+/* Main game window */
+
+.game-window {
+    width: min(900px, 95%);
+    background: rgba(255, 235, 251, 0.94);
+
+    border: 4px solid #a447bf;
+
+    box-shadow:
+        8px 8px 0 #e276c1,
+        14px 14px 0 rgba(94, 38, 111, 0.25);
+
+    position: relative;
+}
+
+/* Window top */
+
+.window-bar {
+    background: #ef9bd4;
+    border-bottom: 4px solid #a447bf;
+
+    padding: 9px 14px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.window-buttons {
+    display: flex;
+    gap: 6px;
+}
+
+.window-buttons span {
+    width: 13px;
+    height: 13px;
+
+    display: block;
+
+    background: #ffe8f8;
+    border: 2px solid #a447bf;
+}
+
+/* Hero content */
+
+.hero-content {
+    padding: 60px 35px 70px;
+}
+
+.pixel-character {
+    font-size: 55px;
+    color: #8b39bd;
+
+    margin-bottom: 10px;
+
+    text-shadow:
+        3px 3px #ef8dc9,
+        6px 6px rgba(132, 48, 172, 0.15);
+}
+
+.small-text {
+    font-size: 11px;
+    color: #a04fb8;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+.hero h1 {
+    font-size: clamp(35px, 7vw, 72px);
+
+    line-height: 1;
+
+    color: #8e37b8;
+
+    text-shadow:
+        4px 4px #f29bd5,
+        7px 7px rgba(111, 45, 133, 0.15);
+
+    margin-bottom: 25px;
+}
+
+.hero h1 span {
+    color: #ec62b9;
+}
+
+.hero-description {
+    max-width: 680px;
+    margin: auto;
+
+    color: #6d4b78;
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+.start-button {
+    display: inline-block;
+
+    margin-top: 30px;
+
+    text-decoration: none;
+
+    color: white;
+    background: #a344c0;
+
+    padding: 14px 28px;
+
+    border: 3px solid #7b2d98;
+
+    box-shadow:
+        5px 5px 0 #e57ac3;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    letter-spacing: 1px;
+}
+
+.start-button:hover {
+    background: #c454a8;
+    transform: translate(3px, 3px);
+    box-shadow: 2px 2px 0 #e57ac3;
+}
+
+/* ---------- SECTIONS ---------- */
+
+section {
+    padding: 85px 7%;
+}
+
+.section-container {
+    max-width: 1100px;
+    margin: auto;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.section-code {
+    color: #d252b0;
+    font-size: 11px;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+}
+
+.section-title h2 {
+    font-size: 34px;
+    color: #7d36a3;
+
+    text-shadow: 3px 3px #f2a4d8;
+}
+
+.section-title p {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #765b80;
+}
+
+/* ---------- ABOUT ---------- */
+
+.about-box {
+    background: rgba(255, 238, 251, 0.92);
+
+    border: 4px solid #a953c3;
+
+    padding: 35px;
+
+    box-shadow:
+        7px 7px 0 #dc82c4;
+
+    line-height: 1.9;
+    font-size: 13px;
+}
+
+.about-box strong {
+    color: #b13eaa;
+}
+
+/* ---------- COMPONENT CARDS ---------- */
+
+.card-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 22px;
+}
+
+.card {
+    background: rgba(255, 239, 252, 0.95);
+
+    border: 3px solid #a957c3;
+
+    padding: 25px;
+
+    box-shadow:
+        5px 5px 0 #e185c8;
+
+    transition: 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+
+    box-shadow:
+        7px 7px 0 #d25db1;
+}
+
+.card-icon {
+    font-size: 38px;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    color: #9135b2;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 11px;
+    line-height: 1.8;
+    color: #735779;
+}
+
+.card-tag {
+    display: inline-block;
+
+    margin-top: 15px;
+
+    padding: 5px 8px;
+
+    background: #f3c3e5;
+
+    border: 2px solid #bd65c9;
+
+    color: #873b9e;
+
+    font-size: 9px;
+    font-weight: bold;
+}
+
+/* ---------- HARDWARE ---------- */
+
+.hardware-list {
+    display: grid;
+    gap: 20px;
+}
+
+.hardware-item {
+    display: grid;
+
+    grid-template-columns: 130px 1fr;
+
+    background: rgba(255, 237, 251, 0.94);
+
+    border: 3px solid #a651c1;
+
+    box-shadow: 5px 5px 0 #e28bc9;
+}
+
+.hardware-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #e7b9e8;
+
+    border-right: 3px solid #a651c1;
+
+    color: #8632a9;
+
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.hardware-info {
+    padding: 25px;
+}
+
+.hardware-info h3 {
+    color: #8c36ad;
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.hardware-info p {
+    font-size: 12px;
+    color: #725675;
+    line-height: 1.8;
+}
+
+.function-box {
+    margin-top: 14px;
+
+    background: #f6d9ed;
+
+    border-left: 4px solid #df62b5;
+
+    padding: 10px 13px;
+
+    font-size: 11px;
+    color: #673f70;
+}
+
+.function-box strong {
+    color: #bb3d9d;
+}
+
+/* ---------- SOFTWARE ---------- */
+
+.software-area {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 25px;
+}
+
+.software-box {
+    background: rgba(255, 237, 251, 0.95);
+
+    border: 3px solid #a651c1;
+
+    padding: 30px;
+
+    box-shadow: 5px 5px 0 #e28bc9;
+}
+
+.software-box h3 {
+    font-size: 22px;
+    color: #9135b2;
+    margin-bottom: 12px;
+}
+
+.software-box p {
+    font-size: 12px;
+    color: #755777;
+    line-height: 1.8;
+}
+
+.software-box ul {
+    list-style: none;
+    margin-top: 18px;
+}
+
+.software-box li {
+    padding: 9px 0;
+
+    border-bottom: 2px dashed #d7a3d4;
+
+    font-size: 11px;
+    color: #65486d;
+}
+
+.software-box li::before {
+    content: "♡ ";
+    color: #e05db1;
+}
+
+/* ---------- HOW COMPUTERS WORK ---------- */
+
+.process {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 15px;
+}
+
+.process-card {
+    text-align: center;
+
+    background: rgba(255, 237, 251, 0.96);
+
+    border: 3px solid #a651c1;
+
+    padding: 25px 15px;
+
+    position: relative;
+
+    box-shadow: 4px 4px 0 #df83c6;
+}
+
+.process-card:not(:last-child)::after {
+    content: "♡";
+
+    position: absolute;
+
+    right: -18px;
+    top: 45%;
+
+    color: #d34eaf;
+
+    font-size: 20px;
+
+    z-index: 5;
+}
+
+.step {
+    font-size: 10px;
+    color: #d04eaa;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+.process-card h3 {
+    color: #8e36b0;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.process-card p {
+    color: #765977;
+    font-size: 10px;
+    line-height: 1.8;
+}
+
+/* ---------- EXAMPLE ---------- */
+
+.example {
+    margin-top: 50px;
+
+    background: rgba(255, 238, 251, 0.95);
+
+    border: 4px solid #a651c1;
+
+    box-shadow: 7px 7px 0 #df83c6;
+
+    padding: 30px;
+}
+
+.example-title {
+    color: #9237b3;
+    font-size: 20px;
+    margin-bottom: 25px;
+}
+
+.example-row {
+    display: grid;
+
+    grid-template-columns: 100px 1fr;
+
+    gap: 20px;
+
+    padding: 18px 0;
+
+    border-bottom: 2px dashed #d8a3d4;
+}
+
+.example-row:last-child {
+    border-bottom: none;
+}
+
+.example-number {
+    color: white;
+
+    background: #b14bc4;
+
+    border: 2px solid #84329f;
+
+    padding: 10px;
+
+    text-align: center;
+
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.example-row h4 {
+    color: #9137af;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.example-row p {
+    color: #725675;
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+/* ---------- REFERENCES ---------- */
+
+.references {
+    display: grid;
+    gap: 18px;
+}
+
+.reference {
+    background: rgba(255, 237, 251, 0.96);
+
+    border: 3px solid #a651c1;
+
+    padding: 22px 27px;
+
+    box-shadow: 4px 4px 0 #df83c6;
+}
+
+.reference h3 {
+    color: #8c36ad;
+    font-size: 15px;
+    margin-bottom: 7px;
+}
+
+.reference p {
+    font-size: 11px;
+    color: #755777;
+    line-height: 1.7;
+}
+
+.reference a {
+    display: inline-block;
+
+    margin-top: 8px;
+
+    color: #c13ea7;
+
+    font-size: 11px;
+    font-weight: bold;
+
+    text-decoration: none;
+}
+
+.reference a:hover {
+    text-decoration: underline;
+}
+
+/* ---------- FOOTER ---------- */
+
+footer {
+    text-align: center;
+
+    padding: 45px 20px;
+
+    background: #8b4a9f;
+
+    color: white;
+
+    border-top: 5px solid #ef9bd4;
+}
+
+footer h2 {
+    font-size: 23px;
+    letter-spacing: 3px;
+    text-shadow: 3px 3px #c54e9f;
+}
+
+footer p {
+    margin-top: 8px;
+    font-size: 10px;
+    color: #f9dff4;
+}
+
+/* ---------- PIXEL DECORATIONS ---------- */
+
+.pixel-heart {
+    position: absolute;
+
+    color: #e75bb6;
+
+    font-size: 35px;
+
+    text-shadow:
+        3px 3px #ffffff;
+}
+
+.heart-one {
+    top: 25%;
+    left: 7%;
+}
+
+.heart-two {
+    top: 18%;
+    right: 12%;
+}
+
+.heart-three {
+    bottom: 12%;
+    left: 15%;
+}
+
+.star {
+    position: absolute;
+    color: white;
+    font-size: 25px;
+    text-shadow: 2px 2px #b04bc1;
+}
+
+.star-one {
+    top: 15%;
+    left: 25%;
+}
+
+.star-two {
+    bottom: 20%;
+    right: 20%;
+}
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 850px) {
+
+    nav {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav ul {
+        justify-content: center;
+    }
+
+    .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .process {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .process-card:not(:last-child)::after {
+        display: none;
+    }
+
+    .software-area {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .hero {
+        min-height: 600px;
+    }
+
+    .hero-content {
+        padding: 45px 20px;
+    }
+
+    .hero h1 {
+        font-size: 38px;
+    }
+
+    section {
+        padding: 60px 20px;
+    }
+
+    .card-grid,
+    .process {
+        grid-template-columns: 1fr;
+    }
+
+    .hardware-item {
+        grid-template-columns: 1fr;
+    }
+
+    .hardware-number {
+        border-right: none;
+        border-bottom: 3px solid #a651c1;
+        padding: 15px;
+    }
+
+    .example-row {
+        grid-template-columns: 1fr;
+    }
+
+    nav a {
+        font-size: 9px;
+        padding: 7px 8px;
+    }
+
+    .logo {
+        font-size: 18px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVIGATION
+     ===================================================== -->
+
+<nav>
+
+    <div class="logo">
+        ACE.<span>TECH</span>
+    </div>
+
+    <ul>
+
+        <li>
+            <a href="#home">HOME</a>
+        </li>
+
+        <li>
+            <a href="#hardware">HARDWARE</a>
+        </li>
+
+        <li>
+            <a href="#software">SOFTWARE</a>
+        </li>
+
+        <li>
+            <a href="#how-it-works">HOW IT WORKS</a>
+        </li>
+
+        <li>
+            <a href="#references">REFERENCES</a>
+        </li>
+
+    </ul>
+
+</nav>
+
+
+<!-- =====================================================
+     HOME
+     ===================================================== -->
+
+<section id="home" class="hero">
+
+    <div class="pixel-heart heart-one">♥</div>
+    <div class="pixel-heart heart-two">♡</div>
+    <div class="pixel-heart heart-three">♥</div>
+
+    <div class="star star-one">✦</div>
+    <div class="star star-two">✧</div>
+
+
+    <div class="game-window">
+
+        <div class="window-bar">
+
+            <span>
+                ACE.TECH
+            </span>
+
+            <div class="window-buttons">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+        </div>
+
+
+        <div class="hero-content">
+
+            <div class="pixel-character">
+                ◜( •ᴗ• )◝
+            </div>
+
+            <div class="small-text">
+                WELCOME, PLAYER!
+            </div>
+
+            <h1>
+                COMPUTER<br>
+                <span>SYSTEMS</span>
+            </h1>
+
+            <p class="hero-description">
+
+                Learn the fundamentals of computer systems
+                through a simple and interactive-style learning
+                interface. Explore hardware, software, CPU,
+                memory, storage, input and output devices,
+                and discover how they work together.
+
+            </p>
+
+            <a href="#hardware" class="start-button">
+                START LEARNING ♡
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     INTRODUCTION
+     ===================================================== -->
+
+<section>
+
+    <div class="section-container">
+
+        <div class="section-title">
+
+            <div class="section-code">
+                [ SYSTEM.INFO ]
+            </div>
+
+            <h2>
+                WHAT IS A COMPUTER SYSTEM?
+            </h2>
+
+            <p>
+                Understanding the basics before entering the next level.
+            </p>
+
+        </div>
+
+
+        <div class="about-box">
+
+            <p>
+
+                A <strong>computer system</strong> is a combination
+                of hardware and software that works together to
+                receive input, process data, store information,
+                and produce output.
+
+            </p>
+
+            <br>
+
+            <p>
+
+                The physical parts of a computer are called
+                <strong>hardware</strong>, while the programs and
+                instructions that control those parts are called
+                <strong>software</strong>. Both are important because
+                hardware provides the physical resources while
+                software tells the computer what tasks to perform.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     HARDWARE
+     ===================================================== -->
+
+<section id="hardware">
+
+    <div class="section-container">
+
+        <div class="section-title">
+
+            <div class="section-code">
+                [ LEVEL 01 / HARDWARE ]
+            </div>
+
+            <h2>
+                HARDWARE COMPONENTS
+            </h2>
+
+            <p>
+                The physical parts that make a computer system work.
+            </p>
+
+        </div>
+
+
+        <div class="hardware-list">
+
+
+            <!-- CPU -->
+
+            <div class="hardware-item">
+
+                <div class="hardware-number">
+                    CPU
+                </div>
+
+                <div class="hardware-info">
+
+                    <h3>
+                        Central Processing Unit
+                    </h3>
+
+                    <p>
+
+                        The CPU is the main processor of a computer.
+                        It executes instructions, performs calculations,
+                        and processes data based on the instructions
+                        provided by software.
+
+                    </p>
+
+                    <div class="function-box">
+
+                        <strong>FUNCTION:</strong>
+
+                        Executes instructions and processes data.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- MEMORY -->
+
+            <div class="hardware-item">
+
+                <div class="hardware-number">
+                    RAM
+                </div>
+
+                <div class="hardware-info">
+
+                    <h3>
+                        Memory
+                    </h3>
+
+                    <p>
+
+                        Random Access Memory, or RAM, temporarily
+                        holds data and instructions that the computer
+                        is actively using.
+
+                    </p>
+
+                    <div class="function-box">
+
+                        <strong>FUNCTION:</strong>
+
+                        Provides temporary working space for active
+                        programs and data.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- STORAGE -->
+
+            <div class="hardware-item">
+
+                <div class="hardware-number">
+                    SSD
+                </div>
+
+                <div class="hardware-info">
+
+                    <h3>
+                        Storage Devices
+                    </h3>
+
+                    <p>
+
+                        Storage devices keep files, programs,
+                        operating system data, and other information
+                        even when the computer is turned off.
+
+                    </p>
+
+                    <div class="function-box">
+
+                        <strong>EXAMPLES:</strong>
+
+                        SSD, HDD, USB flash drive, and memory cards.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- INPUT -->
+
+            <div class="hardware-item">
+
+                <div class="hardware-number">
+                    IN
+                </div>
+
+                <div class="hardware-info">
+
+                    <h3>
+                        Input Devices
+                    </h3>
+
+                    <p>
+
+                        Input devices allow users to provide data
+                        and commands to the computer.
+
+                    </p>
+
+                    <div class="function-box">
+
+                        <strong>EXAMPLES:</strong>
+
+                        Keyboard, mouse, microphone, scanner,
+                        and webcam.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- OUTPUT -->
+
+            <div class="hardware-item">
+
+                <div class="hardware-number">
+                    OUT
+                </div>
+
+                <div class="hardware-info">
+
+                    <h3>
+                        Output Devices
+                    </h3>
+
+                    <p>
+
+                        Output devices communicate processed
+                        information from the computer to the user.
+
+                    </p>
+
+                    <div class="function-box">
+
+                        <strong>EXAMPLES:</strong>
+
+                        Monitor, printer, speakers, projector,
+                        and headphones.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     HARDWARE QUICK GUIDE
+     ===================================================== -->
+
+<section>
+
+    <div class="section-container">
+
+        <div class="section-title">
+
+            <div class="section-code">
+                [ HARDWARE DATABASE ]
+            </div>
+
+            <h2>
+                COMPONENT QUICK GUIDE
+            </h2>
+
+            <p>
+                Know what each component contributes to the system.
+            </p>
+
+        </div>
+
+
+        <div class="card-grid">
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    🧠
+                </div>
+
+                <h3>
+                    CPU
+                </h3>
+
+                <p>
+                    Processes instructions and performs calculations.
+                </p>
+
+                <span class="card-tag">
+                    PROCESSING
+                </span>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    💗
+                </div>
+
+                <h3>
+                    RAM
+                </h3>
+
+                <p>
+                    Temporarily stores data and instructions currently
+                    being used.
+                </p>
+
+                <span class="card-tag">
+                    MEMORY
+                </span>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    💾
+                </div>
+
+                <h3>
+                    STORAGE
+                </h3>
+
+                <p>
+                    Keeps data and files available for future use.
+                </p>
+
+                <span class="card-tag">
+                    DATA
+                </span>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    ⌨
+                </div>
+
+                <h3>
+                    INPUT
+                </h3>
+
+                <p>
+                    Sends information and commands into the computer.
+                </p>
+
+                <span class="card-tag">
+                    USER → PC
+                </span>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    🖥
+                </div>
+
+                <h3>
+                    OUTPUT
+                </h3>
+
+                <p>
+                    Presents processed information to the user.
+                </p>
+
+                <span class="card-tag">
+                    PC → USER
+                </span>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    ⚙
+                </div>
+
+                <h3>
+                    MOTHERBOARD
+                </h3>
+
+                <p>
+                    Connects major hardware components so they can
+                    communicate with each other.
+                </p>
+
+                <span class="card-tag">
+                    CONNECTION
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SOFTWARE
+     ===================================================== -->
+
+<section id="software">
+
+    <div class="section-container">
+
+        <div class="section-title">
+
+            <div class="section-code">
+                [ LEVEL 02 / SOFTWARE ]
+            </div>
+
+            <h2>
+                COMPUTER SOFTWARE
+            </h2>
+
+            <p>
+                The instructions that make computer hardware useful.
+            </p>
+
+        </div>
+
+
+        <div class="software-area">
+
+
+            <div class="software-box">
+
+                <h3>
+                    ⚙ SYSTEM SOFTWARE
+                </h3>
+
+                <p>
+
+                    System software manages computer hardware and
+                    provides the environment needed for applications
+                    to operate.
+
+                </p>
+
+
+                <ul>
+
+                    <li>
+                        Operating Systems
+                    </li>
+
+                    <li>
+                        Device Drivers
+                    </li>
+
+                    <li>
+                        Utility Programs
+                    </li>
+
+                    <li>
+                        System Management Tools
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <div class="software-box">
+
+                <h3>
+                    ♡ APPLICATION SOFTWARE
+                </h3>
+
+                <p>
+
+                    Application software is designed to help users
+                    perform specific tasks.
+
+                </p>
+
+
+                <ul>
+
+                    <li>
+                        Web Browsers
+                    </li>
+
+                    <li>
+                        Word Processors
+                    </li>
+
+                    <li>
+                        Spreadsheet Applications
+                    </li>
+
+                    <li>
+                        Graphic Design Programs
+                    </li>
+
+                    <li>
+                        Games and Entertainment Apps
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="about-box" style="margin-top:30px;">
+
+            <p>
+
+                <strong>Simple way to remember:</strong>
+
+                Hardware is the physical part of the computer,
+                while software is the set of instructions that
+                tells the hardware what to do.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     HOW COMPUTERS WORK
+     ===================================================== -->
+
+<section id="how-it-works">
+
+    <div class="section-container">
+
+        <div class="section-title">
+
+            <div class="section-code">
+                [ LEVEL 03 / PROCESS ]
+            </div>
+
+            <h2>
+                HOW COMPUTERS WORK
+            </h2>
+
+            <p>
+                Follow the basic information-processing cycle.
+            </p>
+
+        </div>
+
+
+        <div class="process">
+
+
+            <div class="process-card">
+
+                <div class="step">
+                    STEP 01
+                </div>
+
+                <h3>
+                    INPUT
+                </h3>
+
+                <p>
+
+                    Data or commands enter the computer through
+                    input devices such as keyboards and mice.
+
+                </p>
+
+            </div>
+
+
+            <div class="process-card">
+
+                <div class="step">
+                    STEP 02
+                </div>
+
+                <h3>
+                    PROCESS
+                </h3>
+
+                <p>
+
+                    The CPU processes the data according to
+                    instructions from software.
+
+                </p>
+
+            </div>
+
+
+            <div class="process-card">
+
+                <div class="step">
+                    STEP 03
+                </div>
+
+                <h3>
+                    OUTPUT
+                </h3>
+
+                <p>
+
+                    The computer presents the processed information
+                    through an output device.
+
+                </p>
+
+            </div>
+
+
+            <div class="process-card">
+
+                <div class="step">
+                    STEP 04
+                </div>
+
+                <h3>
+                    STORAGE
+                </h3>
+
+                <p>
+
+                    Data and results can be saved in storage devices
+                    for future use.
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- EXAMPLE -->
+
+        <div class="example">
+
+            <div class="example-title">
+                ♡ REAL-WORLD EXAMPLE: TYPING A DOCUMENT
+            </div>
+
+
+            <div class="example-row">
+
+                <div class="example-number">
+                    INPUT
+                </div>
+
+                <div>
+
+                    <h4>
+                        Keyboard
+                    </h4>
+
+                    <p>
+
+                        You press a key on the keyboard.
+                        The keyboard sends the corresponding
+                        input to the computer.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="example-row">
+
+                <div class="example-number">
+                    PROCESS
+                </div>
+
+                <div>
+
+                    <h4>
+                        CPU + RAM
+                    </h4>
+
+                    <p>
+
+                        The CPU processes the keyboard input while
+                        RAM temporarily holds the active data and
+                        instructions.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="example-row">
+
+                <div class="example-number">
+                    OUTPUT
+                </div>
+
+                <div>
+
+                    <h4>
+                        Monitor
+                    </h4>
+
+                    <p>
+
+                        The monitor displays the character or text
+                        so the user can see the result.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="example-row">
+
+                <div class="example-number">
+                    STORAGE
+                </div>
+
+                <div>
+
+                    <h4>
+                        Storage
+                    </h4>
+
+                    <p>
+
+                        When the document is saved, its data is
+                        stored on an SSD, HDD, or another storage
+                        device.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     REFERENCES
+     ===================================================== -->
+
+<section id="references">
+
+    <div class="section-container">
+
+        <div class="section-title">
+
+            <div class="section-code">
+                [ SYSTEM SOURCES ]
+            </div>
+
+            <h2>
+                REFERENCES
+            </h2>
+
+            <p>
+                Additional resources for learning computer fundamentals.
+            </p>
+
+        </div>
+
+
+        <div class="references">
+
+
+            <div class="reference">
+
+                <h3>
+                    IBM — Computer Hardware
+                </h3>
+
+                <p>
+                    Information about computer hardware and physical
+                    components.
+                </p>
+
+                <a href="https://www.ibm.com/think/topics/computer-hardware"
+                   target="_blank">
+
+                    Visit Resource →
+
+                </a>
+
+            </div>
+
+
+            <div class="reference">
+
+                <h3>
+                    IBM — Software
+                </h3>
+
+                <p>
+                    General information about software and its role
+                    in computer systems.
+                </p>
+
+                <a href="https://www.ibm.com/think/topics/software"
+                   target="_blank">
+
+                    Visit Resource →
+
+                </a>
+
+            </div>
+
+
+            <div class="reference">
+
+                <h3>
+                    Encyclopaedia Britannica — Computer
+                </h3>
+
+                <p>
+                    Background information about computers and
+                    computer technology.
+                </p>
+
+                <a href="https://www.britannica.com/technology/computer"
+                   target="_blank">
+
+                    Visit Resource →
+
+                </a>
+
+            </div>
+
+
+            <div class="reference">
+
+                <h3>
+                    Intel — What Is a Processor?
+                </h3>
+
+                <p>
+                    Educational information about processors and
+                    their role in computer systems.
+                </p>
+
+                <a href="https://www.intel.com/content/www/us/en/products/docs/processors/what-is-a-processor.html"
+                   target="_blank">
+
+                    Visit Resource →
+
+                </a>
+
+            </div>
+
+
+            <div class="reference">
+
+                <h3>
+                    Computer Systems and Components
+                </h3>
+
+                <p>
+
+                    This website organizes basic concepts of
+                    hardware, software, processing, memory,
+                    storage, input, and output for introductory
+                    Information Technology learning.
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
+
+<footer>
+
+    <h2>
+        ACE.TECH ♡
+    </h2>
+
+    <p>
+        COMPUTER SYSTEMS & COMPONENTS
+    </p>
+
+    <p>
+        IT FUNDAMENTALS • LEARNING WEBSITE
+    </p>
+
+</footer>
+
+
+</body>
+</html>
